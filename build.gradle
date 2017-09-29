@@ -60,25 +60,37 @@ docker {
 	maintainer("Redbee")
 }
 
-task buildDocker(type: Docker, dependsOn: build) {
-	push = false
-	dryRun = true
-	applicationName = jar.baseName
 
-	//dockerfile = file('src/main/docker/Dockerfile')
-	doFirst {
-		copy {
-			from jar
-			into stageDir
-		}
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.10'
+}
+
+
+//START Build docker image
+task buildDocker(type: Docker, dependsOn: build) {
+	baseImage = "anapsix/alpine-java:8"
+	maintainer = "RFSC"
+	hostUrl = "https://docker.dev.redbee.io"
+	push = true
+	dryRun = false
+	tagVersion = "latest"
+	tag = "docker.dev.redbee.io/${jar.baseName}"
+	addFile {
+		from jar
+		rename {'app.jar'}
 	}
 
-	volume("/tmp", "/log", "/root/.ssh")
-	addFile("${jar.baseName}-${jar.version}.jar", "app.jar")
-	addFile("libs/local_policy.jar", "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/local_policy.jar")
-	addFile("libs/US_export_policy.jar", "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/US_export_policy.jar")
 	runCommand("bash -c 'touch /app.jar'")
-	entryPoint(["java","-Djava.security.egd=file:/dev/./urandom", "-jar","/app.jar"])
+
+	entryPoint(
+			[
+					"java",
+					"-Djava.security.egd=file:/dev/./urandom",
+					"-Dspring.profiles.active=$System.env.environment",
+					"-jar",
+					"/app.jar"
+			]
+	)
 }
 
 
