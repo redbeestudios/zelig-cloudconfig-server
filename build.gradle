@@ -1,0 +1,86 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+apply plugin: 'maven'
+
+
+
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE")
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+}
+
+
+
+jar {
+	baseName = 'rfsc-cloud-config-server'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	jcenter()
+}
+
+
+dependencies {
+
+	compile('org.springframework.security:spring-security-ldap')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.cloud:spring-cloud-config-server')
+	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5"
+	}
+}
+
+docker {
+	baseImage("java:8")
+	maintainer("Redbee")
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+	push = false
+	dryRun = true
+	applicationName = jar.baseName
+
+	//dockerfile = file('src/main/docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
+
+	volume("/tmp", "/log", "/root/.ssh")
+	addFile("${jar.baseName}-${jar.version}.jar", "app.jar")
+	addFile("libs/local_policy.jar", "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/local_policy.jar")
+	addFile("libs/US_export_policy.jar", "/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/US_export_policy.jar")
+	runCommand("bash -c 'touch /app.jar'")
+	entryPoint(["java","-Djava.security.egd=file:/dev/./urandom", "-jar","/app.jar"])
+}
+
+
+
+

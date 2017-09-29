@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      env: desa
+      server:
+        git:
+          uri: http://repowe.eastus.cloudapp.azure.com/scm/we/ms-cloud-config.git
+          username: jenkins
+          password: jenkins123456
+encrypt:
+  key: encryptme
+security:
+  user:
+    password: sarasa
