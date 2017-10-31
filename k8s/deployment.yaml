@@ -3,11 +3,9 @@ kind: Deployment
 metadata:
   name: rfsc-cloud-config-server
 spec:
-  replicas: 1 # tells deployment to run 1 pods matching the template
-  template: # create pods using pod definition in this template
+  replicas: 1
+  template:
     metadata:
-      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
-      # generated from the deployment name
       labels:
         app: rfsc-cloud-config-server
     spec:
@@ -15,5 +13,8 @@ spec:
       - name: rfsc-cloud-config-server
         image: docker.dev.redbee.io/rfsc-cloud-config-server:latest
         imagePullPolicy: Always
+        env:
+          - name: "SPRING_PROFILES_ACTIVE"
+            value: "test"
         ports:
         - containerPort: 8888

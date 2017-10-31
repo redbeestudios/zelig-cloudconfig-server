@@ -86,7 +86,6 @@ task buildDocker(type: Docker, dependsOn: build) {
 			[
 					"java",
 					"-Djava.security.egd=file:/dev/./urandom",
-					"-Dspring.profiles.active=$System.env.environment",
 					"-jar",
 					"/app.jar"
 			]
