@@ -17,4 +17,25 @@ spec:
           - name: "SPRING_PROFILES_ACTIVE"
             value: "qa"
         ports:
-        - containerPort: 8888
+        - name: httpport
+          containerPort: 8888
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 20
+          periodSeconds: 1
+          failureThreshold: 40
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+          limits:
+            memory: "1024Mi"
+            cpu: "2"
