@@ -17,7 +17,6 @@
       <includeMdc>true</includeMdc>
 	  <customFields>{"appname": "${APPNAME:-rfsc-cloud-config-server}", "environment": "${ENVIRONMENT:-test}"}</customFields>
       </encoder>
-      <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider"/>
     </appender>
 
     <logger name="io.redbee.rest.template.request" level="INFO">
