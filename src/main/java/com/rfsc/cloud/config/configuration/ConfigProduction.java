@@ -17,7 +17,7 @@ public class ConfigProduction extends WebSecurityConfigurerAdapter {
         http.csrf()
             .disable()
             .authorizeRequests()
-            .antMatchers("/health")
+            .antMatchers("/health", "/info")
             .permitAll()
             .anyRequest()
             .authenticated()
