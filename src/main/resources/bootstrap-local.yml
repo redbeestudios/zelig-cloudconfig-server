@@ -8,4 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/development/repositories/ms-cloud-config
+          uri: file://${user.home}/development/repos/ms-cloud-config
+management:
+  endpoints:
+    web:
+      base-path: /
+  endpoint:
+    health:
+      show-details: true

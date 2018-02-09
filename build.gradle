@@ -8,7 +8,7 @@ apply plugin: 'maven'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 
 group = 'com.rfsc.cloud.config'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 
 buildscript {
