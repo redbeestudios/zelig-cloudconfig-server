@@ -18,3 +18,16 @@ spec:
             value: "ci"
         ports:
         - containerPort: 8888
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 20
+          periodSeconds: 1
+          failureThreshold: 40
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 30
+          periodSeconds: 5

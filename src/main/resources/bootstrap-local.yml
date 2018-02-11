@@ -8,9 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: http://repowe.eastus.cloudapp.azure.com/scm/we/ms-cloud-config.git
-          username: jenkins
-          password: jenkins123456
+          uri: file://${user.home}/development/repos/ms-cloud-config
 management:
   endpoints:
     web:
