@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Profile({"local", "test", "capac", "ci", "qa", "uat"})
+@Profile({"local", "test", "desaR2", "capac", "ci", "qa", "uat"})
 @Slf4j
 public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 
