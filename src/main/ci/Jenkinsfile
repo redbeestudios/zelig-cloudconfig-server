@@ -19,6 +19,9 @@ pipeline {
       steps {
         echo 'Preparation'
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+		cleanWs()
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace'], [$class: 'CleanBeforeCheckout']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '129b2c26-7e2c-41b5-a986-f7b335d8e494', url: 'ssh://git@repowe.eastus.cloudapp.azure.com:7999/we/rfsc-cloud-config-server.git']]])
+
       }
     }
     stage('Build') {
