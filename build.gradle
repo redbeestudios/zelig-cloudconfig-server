@@ -86,7 +86,7 @@ task wrapper(type: Wrapper) {
 
 ////START Build docker image
 if (!project.hasProperty("dockerImgName")) {
-    ext.dockerImgName = "${bootJar.baseName}"
+    ext.dockerImgName = "${jar.baseName}"
 }
 if (!project.hasProperty("dockerTag")) {
     ext.dockerTag = "latest"
