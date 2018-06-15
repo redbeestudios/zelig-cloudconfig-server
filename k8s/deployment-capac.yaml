@@ -7,11 +7,11 @@ spec:
   template:
     metadata:
       labels:
-        app: rfsc-cloud-config-server
+        app: rfsc-ofertador-cloud-config-server
     spec:
       containers:
-      - name: rfsc-cloud-config-server
-        image: docker.dev.redbee.io/rfsc-cloud-config-server:latest
+      - name: rfsc-ofertador-cloud-config-server
+        image: docker.dev.redbee.io/rfsc-ofertador-cloud-config-server:latest
         imagePullPolicy: Always
         env:
           - name: "SPRING_PROFILES_ACTIVE"

@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rfsc-cloud-config-server
+  name: rfsc-ofertador-cloud-config-server
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: rfsc-cloud-config-server
+        app: rfsc-ofertador-cloud-config-server
     spec:
       containers:
-      - name: rfsc-cloud-config-server
-        image: docker.dev.redbee.io/rfsc-cloud-config-server:latest
+      - name: rfsc-ofertador-cloud-config-server
+        image: docker.dev.redbee.io/rfsc-ofertador-cloud-config-server:latest
         imagePullPolicy: Always
         env:
           - name: "SPRING_PROFILES_ACTIVE"
