@@ -33,7 +33,7 @@ buildscript {
 
 
 jar {
-	baseName = 'rfsc-cloud-config-server'
+	baseName = 'rfsc-ofertador-cloud-config-server'
 	version = version
 }
 sourceCompatibility = 1.8
@@ -92,7 +92,7 @@ if (!project.hasProperty("dockerTag")) {
     ext.dockerTag = "latest"
 }
 if (!project.hasProperty("dockerRegistry")) {
-    ext.dockerRegistry = "docker.dev.redbee.io"
+    ext.dockerRegistry = "registryrfsc.azurecr.io"
 }
 if (!project.hasProperty("dockerPushToRegistry")) {
     ext.dockerPushToRegistry = true
@@ -100,7 +100,7 @@ if (!project.hasProperty("dockerPushToRegistry")) {
 task buildDocker(type: Docker, dependsOn: build) {
     baseImage = "frolvlad/alpine-oraclejdk8:slim"
     maintainer = "RFSC"
-    hostUrl = "https://docker.dev.redbee.io"
+    hostUrl = "https://registryrfsc.azurecr.io"
     push = dockerPushToRegistry.toBoolean()
     dryRun = false
     tagVersion = "${dockerTag}"

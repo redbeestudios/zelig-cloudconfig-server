@@ -9,9 +9,11 @@ spec:
       labels:
         app: rfsc-ofertador-cloud-config-server
     spec:
+      imagePullSecrets:
+      - name: registryrfsc.azurecr.io
       containers:
       - name: rfsc-ofertador-cloud-config-server
-        image: docker.dev.redbee.io/rfsc-ofertador-cloud-config-server:latest
+        image: registryrfsc.azurecr.io/rfsc-ofertador-cloud-config-server:latest
         imagePullPolicy: Always
         env:
           - name: "SPRING_PROFILES_ACTIVE"
