@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rfsc-ofertador-cloud-config-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rfsc-ofertador-cloud-config-server
+    spec:
+      imagePullSecrets:
+      - name: registryrfsc.azurecr.io
+      containers:
+      - name: rfsc-ofertador-cloud-config-server
+        image: registryrfsc.azurecr.io/rfsc-ofertador-cloud-config-server:latest
+        imagePullPolicy: Always
+        env:
+          - name: "SPRING_PROFILES_ACTIVE"
+            value: "test"
+        ports:
+        - name: httpport
+          containerPort: 8887
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 180
+          timeoutSeconds: 3
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: httpport
+          initialDelaySeconds: 200
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+          limits:
+            memory: "1024Mi"
+            cpu: "2"

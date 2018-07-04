@@ -21,7 +21,7 @@ spec:
             value: "test"
         ports:
         - name: httpport
-          containerPort: 8888
+          containerPort: 8887
         readinessProbe:
           httpGet:
             path: /health
