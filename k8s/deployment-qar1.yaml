@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: "SPRING_PROFILES_ACTIVE"
-            value: "test"
+            value: "qar1"
         ports:
         - name: httpport
           containerPort: 8887
