@@ -23,18 +23,19 @@ spec:
           containerPort: 8887
         readinessProbe:
           httpGet:
-            path: /health
+            path: /info
             port: httpport
-          initialDelaySeconds: 180
+          initialDelaySeconds: 120
           timeoutSeconds: 3
-          periodSeconds: 5
+          periodSeconds: 3
           successThreshold: 1
           failureThreshold: 3
         livenessProbe:
           httpGet:
-            path: /health
+            path: /info
             port: httpport
-          initialDelaySeconds: 200
+          initialDelaySeconds: 140
+          timeoutSeconds: 3
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 3

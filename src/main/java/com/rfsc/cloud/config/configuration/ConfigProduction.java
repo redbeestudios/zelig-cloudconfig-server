@@ -13,7 +13,7 @@ public class ConfigProduction extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("Configuracion de seguridad para PRODUCCION");
+        log.info("Configuracion de seguridad para PRODUCCION - Ofertador");
         http.csrf()
             .disable()
             .authorizeRequests()

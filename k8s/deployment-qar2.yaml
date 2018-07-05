@@ -19,26 +19,31 @@ spec:
         env:
           - name: "SPRING_PROFILES_ACTIVE"
             value: "qar2"
+          - name: "LOGSTASH_URL"
+            value: "logstash.default.svc.cluster.local:5000"
+          - name: "APPNAME"
+            value: rfsc-ofertador-cloud-config-server
         ports:
         - name: httpport
           containerPort: 8887
         readinessProbe:
           httpGet:
-            path: /health
+            path: /info
             port: httpport
-          initialDelaySeconds: 180
+          initialDelaySeconds: 120
           timeoutSeconds: 3
-          periodSeconds: 5
+          periodSeconds: 10
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 6
         livenessProbe:
           httpGet:
-            path: /health
+            path: /info
             port: httpport
-          initialDelaySeconds: 200
-          periodSeconds: 5
+          initialDelaySeconds: 140
+          timeoutSeconds: 3
+          periodSeconds: 15
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 6
         resources:
           requests:
             memory: "512Mi"

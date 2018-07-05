@@ -13,7 +13,7 @@ public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("Configuracion de seguridad para DESARROLLO");
+        log.info("Configuracion de seguridad para DESARROLLO - Ofertador");
         http.csrf()
             .disable()
             .authorizeRequests()
