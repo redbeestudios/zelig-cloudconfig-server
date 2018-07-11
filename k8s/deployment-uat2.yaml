@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rfsc-ofertador-cloud-config-server
+  namespace: ofertador
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rfsc-ofertador-cloud-config-server
+    spec:
+      imagePullSecrets:
+      - name: cencoregistrysecret
+      containers:
+      - name: rfsc-ofertador-cloud-config-server
+        image: registryrfsc.azurecr.io/rfsc-ofertador-cloud-config-server:latest
+        imagePullPolicy: Always
+        env:
+          - name: "SPRING_PROFILES_ACTIVE"
+            value: "qar2"
+          - name: "LOGSTASH_URL"
+            value: "logstash.default.svc.cluster.local:5000"
+          - name: "APPNAME"
+            value: rfsc-ofertador-cloud-config-server
+        ports:
+        - name: httpport
+          containerPort: 8887
+        readinessProbe:
+          httpGet:
+            path: /info
+            port: httpport
+          initialDelaySeconds: 120
+          timeoutSeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 6
+        livenessProbe:
+          httpGet:
+            path: /info
+            port: httpport
+          initialDelaySeconds: 140
+          timeoutSeconds: 3
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 6
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+          limits:
+            memory: "1024Mi"
+            cpu: "2"
