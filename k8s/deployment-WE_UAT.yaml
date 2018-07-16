@@ -11,7 +11,7 @@ spec:
         app: rfsc-ofertador-cloud-config-server
     spec:
       imagePullSecrets:
-      - name: cencoregistrysecret
+      - name: ofertadorregistrysecret
       containers:
       - name: rfsc-ofertador-cloud-config-server
         image: registryrfsc.azurecr.io/rfsc-ofertador-cloud-config-server:latest
