@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Profile("prod")
+@Profile("security")//TODO, should be prod, but only when our apps could handle this.
 @Slf4j
 public class ConfigProduction extends WebSecurityConfigurerAdapter {
 

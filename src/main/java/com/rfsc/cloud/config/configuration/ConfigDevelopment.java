@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+//TODO, shouldn't prod be here, but only when our apps could handle this.
 @Configuration
-@Profile({"local", "test", "desaR2", "capac", "ci", "qa", "qar1", "qar2", "uat", "uat2", "WE_UAT"})
+@Profile({"local", "test", "desaR2", "capac", "ci", "qa", "qar1", "qar2", "uat", "uat2", "WE_UAT", "prod"})
 @Slf4j
 public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 

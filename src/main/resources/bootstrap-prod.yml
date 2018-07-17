@@ -8,15 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/redbeestudios/rfsc-ofertador-cloudconfig
-          username: redbee-ofertador
-          password: jenkins112358
-  security:
-    user:
-      name: redbee
-      password: '{cipher}ed0b1425e3efb3eab982461e28b34c61d204a04007dd0b14822e3dd09ef66969'
-encrypt:
-  key: 9f57e4cba337ab4804d3104a3804438c
+          uri: uri: http://repowe.eastus.cloudapp.azure.com/scm/we/rfsc-ofertador-cloudconfig.git
+          username: jenkins
+          password: jenkins123456
 management:
   endpoints:
     web:
@@ -25,3 +19,16 @@ management:
     health:
       show-details: true
 
+#  security:
+#    user:
+#      name: redbee
+#      password: '{cipher}ed0b1425e3efb3eab982461e28b34c61d204a04007dd0b14822e3dd09ef66969'
+#encrypt:
+#  key: 9f57e4cba337ab4804d3104a3804438c
+#management:
+#  endpoints:
+#    web:
+#      base-path: /
+#  endpoint:
+#    health:
+#      show-details: true
