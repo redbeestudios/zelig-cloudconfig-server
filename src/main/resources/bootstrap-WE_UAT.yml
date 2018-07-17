@@ -1,0 +1,20 @@
+server:
+  port: 8887
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: uri: http://repowe.eastus.cloudapp.azure.com/scm/we/rfsc-ofertador-cloudconfig.git
+          username: jenkins
+          password: jenkins123456
+management:
+  endpoints:
+    web:
+      base-path: /
+  endpoint:
+    health:
+      show-details: true

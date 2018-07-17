@@ -18,9 +18,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: "SPRING_PROFILES_ACTIVE"
-            value: "qar2"
-          - name: "LOGSTASH_URL"
-            value: "logstash.default.svc.cluster.local:5000"
+            value: "WE_UAT"
           - name: "APPNAME"
             value: rfsc-ofertador-cloud-config-server
         ports:
