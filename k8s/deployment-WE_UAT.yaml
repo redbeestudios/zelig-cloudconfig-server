@@ -28,7 +28,7 @@ spec:
           httpGet:
             path: /info
             port: httpport
-          initialDelaySeconds: 80
+          initialDelaySeconds: 100
           timeoutSeconds: 3
           periodSeconds: 10
           successThreshold: 1
@@ -37,15 +37,15 @@ spec:
           httpGet:
             path: /info
             port: httpport
-          initialDelaySeconds: 100
+          initialDelaySeconds: 120
           timeoutSeconds: 3
           periodSeconds: 15
           successThreshold: 1
           failureThreshold: 6
         resources:
           requests:
-            memory: "512Mi"
+            memory: "1024Mi"
             cpu: "0.3"
           limits:
             memory: "1024Mi"
-            cpu: "0.5"
+            cpu: "0.4"
