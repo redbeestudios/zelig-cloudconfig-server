@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8887
 
 spring:
   application:
@@ -8,15 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: http://repowe.eastus.cloudapp.azure.com/scm/we/ms-cloud-config.git
+          uri: http://repowe.eastus.cloudapp.azure.com/scm/we/rfsc-ofertador-cloudconfig.git
           username: jenkins
           password: jenkins123456
-  security:
-    user:
-      name: redbee
-      password: '{cipher}ed0b1425e3efb3eab982461e28b34c61d204a04007dd0b14822e3dd09ef66969'
-encrypt:
-  key: 9f57e4cba337ab4804d3104a3804438c
 management:
   endpoints:
     web:
@@ -24,4 +18,3 @@ management:
   endpoint:
     health:
       show-details: true
-

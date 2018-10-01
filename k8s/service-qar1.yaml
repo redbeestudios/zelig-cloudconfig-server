@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rfsc-ofertador-cloud-config-server
+spec:
+  selector:
+    app: rfsc-ofertador-cloud-config-server
+  ports:
+    - name: http
+      protocol: TCP
+      nodePort: 32120
+      port: 8887
+      targetPort: 8887
+  type: NodePort
