@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 //TODO, shouldn't prod be here, but only when our apps could handle this.
 @Configuration
-@Profile({"local", "test", "desaR2", "capac", "ci", "qa", "qar1", "qar2", "uat", "uat2", "WE_UAT", "prod", "WE_PROD", "poc"})
+@Profile({"local", "test", "desaR2", "capac", "ci", "qa", "qar1", "qar2", "uat", "uat2", "WE_UAT", "prod", "WE_PROD", "poc","nueva_infra"})
 @Slf4j
 public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 
