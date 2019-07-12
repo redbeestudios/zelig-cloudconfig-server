@@ -112,9 +112,6 @@ task buildDocker(type: Docker, dependsOn: build) {
     addFile("./java-entrypoint.sh", "/java-entrypoint.sh")
 	addFile("./bitbucket-cenco.crt", "/usr/local/share/ca-certificates/bitbucket-cenco.crt")
 	runCommand "chmod 755 /usr/local/share/ca-certificates/bitbucket-cenco.crt"
-	//Si falla el apk, copiar daemon.json a /etc/docker/ y reiniciar el daemon (desconectado de la vpn)
-	runCommand "apk update && apk upgrade && apk add git"
-	runCommand  "update-ca-certificates"
     exposePort(8080)
 
     entryPoint([
