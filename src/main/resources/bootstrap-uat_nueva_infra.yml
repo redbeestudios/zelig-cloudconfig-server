@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://repo.tools.rfsc.cl/scm/ofe/ofertador-cloud-config.git
+          uri: http://repo.tools.rfsc.cl/scm/ofe/ofertador-cloud-config.git
           username: jenkins
           password: jenkins123456
 management:

@@ -98,7 +98,7 @@ if (!project.hasProperty("dockerPushToRegistry")) {
     ext.dockerPushToRegistry = true
 }
 task buildDocker(type: Docker, dependsOn: build) {
-    baseImage = "frolvlad/alpine-oraclejdk8:slim"
+    baseImage = "frolvlad/alpine-java"
     maintainer = "RFSC"
     hostUrl = "https://registryrfsc.azurecr.io"
     push = dockerPushToRegistry.toBoolean()
@@ -110,6 +110,8 @@ task buildDocker(type: Docker, dependsOn: build) {
         rename { "${dockerImgName}.jar" }
     }
     addFile("./java-entrypoint.sh", "/java-entrypoint.sh")
+	addFile("./bitbucket-cenco.crt", "/usr/local/share/ca-certificates/bitbucket-cenco.crt")
+	runCommand "chmod 755 /usr/local/share/ca-certificates/bitbucket-cenco.crt"
     exposePort(8080)
 
     entryPoint([

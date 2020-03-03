@@ -1,5 +1,5 @@
 server:
-  port: 8887
+  port: 8888
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://repo.tools.rfsc.cl/scm/ofe/ofertador-cloud-config.git
+          uri: /root/rfsc-ofertador-cloudconfig
           username: jenkins
           password: jenkins123456
 management:
