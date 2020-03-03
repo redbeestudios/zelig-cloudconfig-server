@@ -21,8 +21,5 @@ management:
       show-details: true
 
 
-
-
-
 encrypt:
   key: alagrandelepusecuca

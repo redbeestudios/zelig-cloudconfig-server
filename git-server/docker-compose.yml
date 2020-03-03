@@ -1,0 +1,7 @@
+version: '3.2'
+services:
+  gitserver:
+    image: "registryrfsc.azurecr.io/one-git-server:0.0.1"
+    container_name: "git-server-one"
+    ports:
+      - "2022:22"
