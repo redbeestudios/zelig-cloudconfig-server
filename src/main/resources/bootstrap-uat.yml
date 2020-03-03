@@ -18,3 +18,5 @@ management:
   endpoint:
     health:
       show-details: true
+encrypt:
+  key: alagrandelepusecuca

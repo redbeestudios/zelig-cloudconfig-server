@@ -1,7 +1,32 @@
-version: '3.2'
+version: '2'
 services:
   gitserver:
     image: "registryrfsc.azurecr.io/one-git-server:0.0.1"
     container_name: "git-server-one"
     ports:
       - "2022:22"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+
+  cloudconfigserver:
+    image: "registryrfsc.azurecr.io/rfsc-ofertador-cloud-config-server:latest"
+    container_name: "cloud-config-server"
+    environment:
+      APPNAME: "rfsc-ofertador-cloud-config-server"
+      SPRING_PROFILES_ACTIVE: "local"
+    ports:
+      - "8887:8887"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+    depends_on:
+      - gitserver
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

@@ -19,6 +19,9 @@ management:
     health:
       show-details: true
 
+encrypt:
+  key: alagrandelepusecuca
+
 #  security:
 #    user:
 #      name: redbee

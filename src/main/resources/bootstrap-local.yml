@@ -1,5 +1,5 @@
 server:
-  port: 8889
+  port: 8887
 
 spring:
   application:
@@ -8,9 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: ssh://cosmefulanito@127.0.0.1:2022/git_codes/cosmefulanito/cloud-config-tmp.git
+          uri: ssh://cosmefulanito@localhost:2022/git_codes/cosmefulanito/cloud-config-tmp.git
           username: cosmefulanito
-          password: cosmefulanito
+          password: 1234
           strictHostKeyChecking: false
 management:
   endpoints:
