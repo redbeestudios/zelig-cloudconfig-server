@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Slf4j
 public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger("ConfigDevelopment");
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         log.info("Configuracion de seguridad para DESARROLLO - Ofertador");

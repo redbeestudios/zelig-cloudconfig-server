@@ -1,5 +1,6 @@
 package com.rfsc.cloud.config.configuration;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -10,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Profile("security")//TODO, should be prod, but only when our apps could handle this.
 @Slf4j
 public class ConfigProduction extends WebSecurityConfigurerAdapter {
+
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger("ConfigProduction");
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
