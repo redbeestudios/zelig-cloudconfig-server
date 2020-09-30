@@ -8,11 +8,9 @@ spring:
     config:
       server:
         git:
-          #uri: ssh://cosmefulanito@localhost:2022/git_codes/cosmefulanito/cloud-config-tmp.git
           uri: https://github.com/redbeestudios/zelig-cloudconfig.git
           username: redbee-ofertador
           password: jenkins112358
-          strictHostKeyChecking: false
 management:
   endpoints:
     web:
@@ -20,7 +18,5 @@ management:
   endpoint:
     health:
       show-details: true
-
-
 encrypt:
   key: alagrandelepusecuca

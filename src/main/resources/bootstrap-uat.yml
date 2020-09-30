@@ -8,9 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: https://repo.tools.rfsc.cl/scm/ofe/ofertador-cloud-config.git
-          username: jenkins
-          password: jenkins123456
+          uri: https://github.com/redbeestudios/zelig-cloudconfig.git
+          username: redbee-ofertador
+          password: jenkins112358
 management:
   endpoints:
     web:

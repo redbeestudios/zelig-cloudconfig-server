@@ -7,7 +7,7 @@ apply plugin: 'docker'
 apply plugin: 'maven'
 //apply plugin: 'com.gorylenko.gradle-git-properties'
 
-group = 'com.rfsc.cloud.config'
+group = 'redbee.zelig.cloudconfig.server'
 version = '1.0.0'
 
 
@@ -24,16 +24,16 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE")
+		classpath("io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE")
 		classpath('se.transmode.gradle:gradle-docker:1.2')
         // Genera informacion de git para endpoint info
-        classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.20'
+        classpath 'gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.2.3'
 	}
 }
 
 
 jar {
-	baseName = 'rfsc-ofertador-cloud-config-server'
+	baseName = 'redbee-zelig-cloudconfig-server'
 	version = version
 }
 sourceCompatibility = 1.8
@@ -53,8 +53,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.cloud:spring-cloud-config-server')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-  	compile('ch.qos.logback:logback-core:1.1.8')
-	compile('net.logstash.logback:logstash-logback-encoder:4.11')
+  	compile('ch.qos.logback:logback-core:1.2.3')
+	compile('net.logstash.logback:logstash-logback-encoder:6.4')
     compileOnly ('org.projectlombok:lombok')
 }
 
@@ -80,8 +80,8 @@ springBoot {
     buildInfo()
 }
 
-task wrapper(type: Wrapper) {
-	gradleVersion = '4.2.1'
+wrapper {
+	gradleVersion = '6.6.1'
 }
 
 ////START Build docker image
@@ -92,15 +92,15 @@ if (!project.hasProperty("dockerTag")) {
     ext.dockerTag = "latest"
 }
 if (!project.hasProperty("dockerRegistry")) {
-    ext.dockerRegistry = "registryrfsc.azurecr.io"
+    ext.dockerRegistry = "registry.dev.redbee.io"
 }
 if (!project.hasProperty("dockerPushToRegistry")) {
     ext.dockerPushToRegistry = true
 }
 task buildDocker(type: Docker, dependsOn: build) {
     baseImage = "frolvlad/alpine-java"
-    maintainer = "RFSC"
-    hostUrl = "https://registryrfsc.azurecr.io"
+    maintainer = "Zelig"
+    //hostUrl = "https://registryrfsc.azurecr.io"
     push = dockerPushToRegistry.toBoolean()
     dryRun = false
     tagVersion = "${dockerTag}"
@@ -110,8 +110,8 @@ task buildDocker(type: Docker, dependsOn: build) {
         rename { "${dockerImgName}.jar" }
     }
     addFile("./java-entrypoint.sh", "/java-entrypoint.sh")
-	addFile("./bitbucket-cenco.crt", "/usr/local/share/ca-certificates/bitbucket-cenco.crt")
-	runCommand "chmod 755 /usr/local/share/ca-certificates/bitbucket-cenco.crt"
+	//addFile("./bitbucket-cenco.crt", "/usr/local/share/ca-certificates/bitbucket-cenco.crt")
+	//runCommand "chmod 755 /usr/local/share/ca-certificates/bitbucket-cenco.crt"
     exposePort(8080)
 
     entryPoint([
