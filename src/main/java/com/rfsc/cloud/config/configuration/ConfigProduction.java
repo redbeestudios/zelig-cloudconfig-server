@@ -16,7 +16,7 @@ public class ConfigProduction extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("Configuracion de seguridad para PRODUCCION - Ofertador"); //Available if Lombok plugin for IntelliJ is installed
+        log.info("Configuracion de seguridad para PRODUCCION - Zelig"); //Available if Lombok plugin for IntelliJ is installed
         http.csrf()
             .disable()
             .authorizeRequests()

@@ -19,7 +19,7 @@ management:
       base-path: /
   endpoint:
     health:
-      show-details: true
+      show-details: ALWAYS
 
 
 encrypt:

@@ -13,7 +13,7 @@ version = '1.0.0'
 
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RC1'
+		springBootVersion = '2.3.4.RELEASE'
 	}
 	repositories {
 		mavenLocal()
@@ -61,7 +61,7 @@ dependencies {
 compileJava.dependsOn(processResources)
 
 ext {
-	springCloudVersion = 'Finchley.M5'
+	springCloudVersion = 'Hoxton.SR8'
 }
 
 dependencyManagement {
@@ -121,7 +121,7 @@ task buildDocker(type: Docker, dependsOn: build) {
 }
 
 bootRun {
-	jvmArgs = ["-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=local"]
+	jvmArgs = ["-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=local", "-DAPPNAME=spring-cloud-config-server"]
 }
 
 

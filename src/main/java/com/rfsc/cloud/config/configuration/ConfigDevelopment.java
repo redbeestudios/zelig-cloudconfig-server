@@ -16,7 +16,7 @@ public class ConfigDevelopment extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("Configuracion de seguridad para DESARROLLO - Ofertador");
+        log.info("Configuracion de seguridad para DESARROLLO - Zelig");
         http.csrf()
             .disable()
             .authorizeRequests()

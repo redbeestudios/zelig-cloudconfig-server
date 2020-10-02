@@ -17,7 +17,7 @@ management:
       base-path: /
   endpoint:
     health:
-      show-details: true
+      show-details: WHEN_AUTHORIZED
 
 encrypt:
   key: alagrandelepusecuca
